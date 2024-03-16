@@ -1,0 +1,90 @@
+body {
+    background: linear-gradient(to right, #00bcd4, #1e88e5); /* Gradient background */
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    align-items: center;
+    overflow: hidden; /* Hide overflow to prevent scrolling */
+}
+
+#intro {
+    text-align: center;
+    align-items: center;
+    animation: fadeInUp 1.5s ease forwards; /* Fade-in animation */
+    opacity: 0; /* Initially hidden */
+}
+
+#intro h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #fff; /* White text color */
+}
+
+#intro h2 {
+    font-size: 1.5em;
+    color: #fff; /* White text color */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#login-button {
+    font-family: 'Times New Roman', sans-serif;
+    left: 20px;
+    position: absolute;
+    top: 20px;
+    text-decoration: none;
+    background-color: #1e88e5;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    display: inline;
+    transition: background-color 0.3s;
+}
+
+#login-button:hover {
+    background-color: #f0f0f0;
+}
+
+#about-us {
+    font-family: 'Times New Roman', sans-serif;
+    right: 20px;
+    position: absolute;
+    top: 20px;
+    text-decoration: none;
+    background-color: #1e88e5;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+#about-us:hover {
+    background-color: #f0f0f0;
+}
+
+#map-button {
+    font-family: 'Times New Roman', sans-serif;
+    right: calc(20px + 130px); /* Adjust based on the width of the "About Us" button */
+    position: absolute;
+    top: 20px;
+    text-decoration: none;
+    background-color: #1e88e5;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+#map-button:hover {
+    background-color: #f0f0f0;
+}

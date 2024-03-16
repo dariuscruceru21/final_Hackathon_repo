@@ -1,0 +1,79 @@
+/*body {*/
+    /*    font-family: Arial, sans-serif;*/
+    /*    margin: 0;*/
+    /*    padding: 0;*/
+    /*    background-color: #f0f0f0;*/
+    /*}*/
+    
+    body {
+        background: linear-gradient(to right, #00bcd4, #1e88e5); /* Gradient background */
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        align-items: center;
+        overflow: hidden; /* Hide overflow to prevent scrolling */
+    }
+    
+    
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    
+    p {
+        line-height: 1.6;
+        color: #555;
+    }
+    
+    .team-member {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .team-member img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin-right: 20px;
+        object-fit: cover;
+    }
+    
+    .team-member-info {
+        flex: 1;
+    }
+    
+    .team-member-name {
+        font-size: 1.2em;
+        color: #333;
+    }
+    
+    .team-member-role {
+        color: #777;
+    }
+    
+    @media (max-width: 768px) {
+        .container {
+            padding: 10px;
+        }
+    
+        .team-member {
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .team-member img {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+    }

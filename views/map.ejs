@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desk Booking</title>
+    <style>
+
+        .container {
+            position: absolute; /* Set container to absolute positioning */
+            display: inline-grid;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 5px;
+        }
+        
+        .group {
+            position: absolute; /* Set group to absolute positioning */
+            /* Define coordinates for each group */
+            margin-bottom: 100px;
+        
+        }
+        
+        
+        .custom-window {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        .window-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .window-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .close-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .close-button:hover {
+            background-color: #555;
+        }
+        
+        .reservation-menu {
+            display: none;
+            margin-top: 20px;
+        }
+        
+        .reservation-menu label, .reservation-menu select, .reservation-menu input, .reservation-menu button {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .reservation-menu button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .reservation-menu button:hover {
+            background-color: #0056b3;
+        }
+        
+        
+        .desk {
+            /* Existing styles */
+            z-index: 1; /* Set a lower z-index value for the buttons */
+        }
+        
+        
+        #customWindow {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 1px solid black;
+            padding: 20px;
+            z-index: 9999;
+        }
+        
+        .desk:hover {
+            background-color: #45a049;
+        }
+        
+        .desk-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            margin-bottom: 10px;
+        
+        }
+        
+        .desk {
+            width: calc(50% - 5px);
+            height: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+        
+        body {
+            width: 100%;
+            max-width: 2708px; /* Adjust as needed */
+            margin: 0 auto;
+            padding: 20px;
+            height: 100%;
+            max-height: 981px; /* Adjust as needed */
+            background-color: #f0f0f0; /* Adjust background color as needed */
+            position: absolute; /* Ensure absolute positioning for absolute elements */
+            
+        }
+        
+        #first {
+            position: absolute;
+            left: 282px; /* Adjust as needed */
+            top: 257px; /* Adjust as needed */
+        }
+        
+        #reservationSuccessWindow {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+        
+        #second {
+            position: absolute;
+            left: 237px; /* Adjust as needed */
+            top: 387px; /* Adjust as needed */
+        }
+        #third {
+            position: absolute;
+            left: 201px; /* Adjust as needed */
+            top: 522px; /* Adjust as needed */
+        }
+        #fourth {
+            position: absolute;
+            left: 315px; /* Adjust as needed */
+            top: 687px; /* Adjust as needed */
+        }
+        #fifth {
+            position: absolute;
+            left: 466px; /* Adjust as needed */
+            top: 687px; /* Adjust as needed */
+        }
+        #sixth {
+            position: absolute;
+            left: 619px; /* Adjust as needed */
+            top: 687px; /* Adjust as needed */
+        }
+        
+        #eighth {
+            position: absolute;
+            left: 781px; /* Adjust as needed */
+            top: 557px; /* Adjust as needed */
+        }
+        #ninth {
+            position: absolute;
+            left: 626px; /* Adjust as needed */
+            top: 563px; /* Adjust as needed */
+        }
+        #tenth {
+            position: absolute;
+            left: 467px; /* Adjust as needed */
+            top: 561px; /* Adjust as needed */
+        }
+        #eleventh {
+            position: absolute;
+            left: 470px; /* Adjust as needed */
+            top: 221px; /* Adjust as needed */
+        }
+        #twelfth {
+            position: absolute;
+            left: 623px; /* Adjust as needed */
+            top: 222px; /* Adjust as needed */
+        }
+        #thirteenth {
+            position: absolute;
+            left: 780px; /* Adjust as needed */
+            top: 223px; /* Adjust as needed */
+        }
+        #fourteenth {
+            position: absolute;
+            left: 1175px; /* Adjust as needed */
+            top: 221px; /* Adjust as needed */
+        }
+        #fifteenth {
+            position: absolute;
+            left: 1328px; /* Adjust as needed */
+            top: 220px; /* Adjust as needed */
+        }
+        #sixteenth {
+            position: absolute;
+            left: 1477px; /* Adjust as needed */
+            top: 220px; /* Adjust as needed */
+        }
+        #seventeenth {
+            position: absolute;
+            left: 1639px; /* Adjust as needed */
+            top: 220px; /* Adjust as needed */
+        }
+        #eighteenth {
+            position: absolute;
+            left: 1794px; /* Adjust as needed */
+            top: 220px; /* Adjust as needed */
+        }
+        #nineteenth {
+            position: absolute;
+            left: 1090px; /* Adjust as needed */
+            top: 573px; /* Adjust as needed */
+        }
+        #twentieth {
+            position: absolute;
+            left: 1090px; /* Adjust as needed */
+            top: 686px; /* Adjust as needed */
+        }
+        #twenty-first {
+            position: absolute;
+            left: 1258px; /* Adjust as needed */
+            top: 686px; /* Adjust as needed */
+        }
+        #twenty-second {
+            position: absolute;
+            left: 1412px; /* Adjust as needed */
+            top: 686px; /* Adjust as needed */
+        }
+        #twenty-third {
+            position: absolute;
+            left: 1564px; /* Adjust as needed */
+            top: 686px; /* Adjust as needed */
+        }
+        #twenty-fourth {
+            position: absolute;
+            left: 1662px; /* Adjust as needed */
+            top: 686px; /* Adjust as needed */
+        }
+        #twenty-fifth {
+            position: absolute;
+            left: 1919px; /* Adjust as needed */
+            top: 220px; /* Adjust as needed */
+        }
+        #twenty-sixth {
+            position: absolute;
+            left: 2050px; /* Adjust as needed */
+            top: 220px; /* Adjust as needed */
+        }
+        #twenty-seventh {
+            position: absolute;
+            left: 2179px; /* Adjust as needed */
+            top: 220px; /* Adjust as needed */
+        }
+        #twenty-eight {
+            position: absolute;
+            left: 2000px; /* Adjust as needed */
+            top: 313px; /* Adjust as needed */
+        }
+        #twenty-ninth {
+            position: absolute;
+            left: 2102px; /* Adjust as needed */
+            top: 313px; /* Adjust as needed */
+        }
+        #thirtieth {
+            position: absolute;
+            left: 1873px; /* Adjust as needed */
+            top: 448px; /* Adjust as needed */
+        }
+        #thirty-first {
+            position: absolute;
+            left: 1969px; /* Adjust as needed */
+            top: 448px; /* Adjust as needed */
+        }
+        #thirty-second {
+            position: absolute;
+            left: 2102px; /* Adjust as needed */
+            top: 448px; /* Adjust as needed */
+        }
+        
+        #thirty-third {
+            position: absolute;
+            left: 941px; /* Adjust as needed */
+            top: 687px; /* Adjust as needed */
+        }
+        
+        #thirty-fourth {
+            position: absolute;
+            left: 780px; /* Adjust as needed */
+            top: 678px; /* Adjust as needed */
+        }
+
+
+    </style>
+
+</head>
+<body>
+
+
+    
+
+
+<div id="customWindow" class="custom-window">
+    <div id="customWindowTitle" class="window-title"></div>
+    <div id="customWindowText" class="window-text"></div>
+    <button id="closeWindow" class="close-button">Close</button>
+    <!-- Reservation menu -->
+    <div id="reservationMenu" class="reservation-menu">
+        <label for="timePeriod">Time Period:</label>
+        <select id="timePeriod">
+            <option value="full-day">Full Day</option>
+            <option value="first-half">First Half</option>
+            <option value="second-half">Second Half</option>
+        </select>
+        <form id="bookForm" action="/book" method="post">
+            <!--  form inputs here -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="deskId">Desk Id:</label>
+            <input type="deskId" id="deskId" name="deskId" required>
+            <!-- Submit button -->
+            <!--<button type="submit">Book Desk</button>-->
+            <label for="reservationDate">Reservation Date:</label>
+            <input type="date" id="reservationDate">
+            <button id="reserveButton">Reserve</button>
+        </form>
+    
+        
+    </div>
+</div>
+
+<!-- Reservation success window
+<div id="reservationSuccessWindow" class="custom-window">
+    <div class="window-title">Reservation Successful</div>
+    <div class="window-text">Your reservation has been successfully made.</div>
+    <button id="closeReservationSuccessWindow" class="close-button">Close</button>
+</div> -->
+
+<!--<img src="Picture1.png">-->
+<div class="container" id="floor-plan">
+    <!-- Your existing HTML code here -->
+    <!-- Static buttons -->
+    <div class="group" id="first">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="1">+</button>
+            <button class="desk" data-desk-id="2">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="3">-</button>
+            <button class="desk" data-desk-id="4">+</button>
+        </div>
+    </div>
+    <div class="group" id="second">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="5">+</button>
+            <button class="desk" data-desk-id="6">+</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="7">+</button>
+            <button class="desk" data-desk-id="8">-</button>
+        </div>
+    </div>
+    <div class="group" id="third">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="9">-</button>
+            <button class="desk" data-desk-id="10">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="11">-</button>
+            <button class="desk" data-desk-id="12">-</button>
+        </div>
+    </div>
+    <div class="group" id="fourth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="13">+</button>
+            <button class="desk" data-desk-id="14">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="15">-</button>
+            <button class="desk" data-desk-id="16">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="fifth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="17">+</button>
+            <button class="desk" data-desk-id="18">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="19">-</button>
+            <button class="desk" data-desk-id="20">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="sixth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="21">+</button>
+            <button class="desk" data-desk-id="22">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="23">-</button>
+            <button class="desk" data-desk-id="24">-</button>
+        </div>
+    </div>
+
+
+    <div class="group" id="eighth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="29">+</button>
+            <button class="desk" data-desk-id="30">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="31">-</button>
+            <button class="desk" data-desk-id="32">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="ninth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="33">+</button>
+            <button class="desk" data-desk-id="34">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="35">-</button>
+            <button class="desk" data-desk-id="36">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="tenth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="37">+</button>
+            <button class="desk" data-desk-id="38">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="39">-</button>
+            <button class="desk" data-desk-id="40">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="eleventh">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="41">+</button>
+            <button class="desk" data-desk-id="42">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="43">-</button>
+            <button class="desk" data-desk-id="44">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twelfth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="45">+</button>
+            <button class="desk" data-desk-id="46">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="47">-</button>
+            <button class="desk" data-desk-id="48">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="thirteenth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="49">+</button>
+            <button class="desk" data-desk-id="50">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="51">-</button>
+            <button class="desk" data-desk-id="52">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="fourteenth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="53">+</button>
+            <button class="desk" data-desk-id="54">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="55">-</button>
+            <button class="desk" data-desk-id="56">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="fifteenth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="57">+</button>
+            <button class="desk" data-desk-id="58">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="59">-</button>
+            <button class="desk" data-desk-id="60">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="sixteenth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="61">+</button>
+            <button class="desk" data-desk-id="62">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="63">-</button>
+            <button class="desk" data-desk-id="64">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="seventeenth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="65">+</button>
+            <button class="desk" data-desk-id="66">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="67">-</button>
+            <button class="desk" data-desk-id="68">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="eighteenth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="69">+</button>
+            <button class="desk" data-desk-id="70">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="71">-</button>
+            <button class="desk" data-desk-id="72">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="nineteenth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="73">+</button>
+            <button class="desk" data-desk-id="74">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="75">-</button>
+            <button class="desk" data-desk-id="76">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twentieth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="77">+</button>
+            <button class="desk" data-desk-id="78">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="79">-</button>
+            <button class="desk" data-desk-id="80">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twenty-first">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="81">+</button>
+            <button class="desk" data-desk-id="82">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="83">-</button>
+            <button class="desk" data-desk-id="84">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twenty-second">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="85">+</button>
+            <button class="desk" data-desk-id="86">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="87">-</button>
+            <button class="desk" data-desk-id="88">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twenty-third">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="89">+</button>
+            <button class="desk" data-desk-id="90">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="91">-</button>
+            <button class="desk" data-desk-id="92">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twenty-fourth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="93">+</button>
+            <button class="desk" data-desk-id="94">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="95">-</button>
+            <button class="desk" data-desk-id="96">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twenty-fifth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="97">+</button>
+            <button class="desk" data-desk-id="98">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="99">-</button>
+            <button class="desk" data-desk-id="100">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twenty-sixth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="101">+</button>
+            <button class="desk" data-desk-id="102">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="103">-</button>
+            <button class="desk" data-desk-id="104">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twenty-seventh">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="105">+</button>
+            <button class="desk" data-desk-id="106">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="107">-</button>
+            <button class="desk" data-desk-id="108">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twenty-eight">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="109">+</button>
+            <button class="desk" data-desk-id="110">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="111">-</button>
+            <button class="desk" data-desk-id="112">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="twenty-ninth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="113">+</button>
+            <button class="desk" data-desk-id="114">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="115">-</button>
+            <button class="desk" data-desk-id="116">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="thirtieth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="117">+</button>
+            <button class="desk" data-desk-id="118">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="119">-</button>
+            <button class="desk" data-desk-id="120">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="thirty-first">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="121">+</button>
+            <button class="desk" data-desk-id="122">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="123">-</button>
+            <button class="desk" data-desk-id="124">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="thirty-second">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="125">+</button>
+            <button class="desk" data-desk-id="126">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="127">-</button>
+            <button class="desk" data-desk-id="128">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="thirty-third">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="129">+</button>
+            <button class="desk" data-desk-id="130">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="131">-</button>
+            <button class="desk" data-desk-id="132">-</button>
+        </div>
+    </div>
+
+    <div class="group" id="thirty-fourth">
+        <div class="desk-group">
+            <button class="desk" data-desk-id="133">+</button>
+            <button class="desk" data-desk-id="134">-</button>
+        </div>
+        <div class="desk-group">
+            <button class="desk" data-desk-id="135">-</button>
+            <button class="desk" data-desk-id="136">-</button>
+        </div>
+    </div>
+
+
+    <!-- Add more buttons here as needed -->
+</div>
+<script>
+
+
+
+
+// Group desks in a circular pattern
+const groups = document.querySelectorAll('.group');
+groups.forEach(group => {
+    const desksInGroup = group.querySelectorAll('.desk');
+    const angleStep = (2 * Math.PI) / desksInGroup.length;
+    const radius = 50; // Adjust as needed
+
+    desksInGroup.forEach((desk, index) => {
+        const angle = angleStep * index;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
+        desk.style.left = `${x}px`;
+        desk.style.top = `${y}px`;
+    });
+});
+
+// Get all buttons
+const buttons = document.querySelectorAll('.desk');
+
+// Add click event listener to each button
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Show the customizable window
+        const customWindow = document.getElementById('customWindow');
+        customWindow.style.display = 'block';
+
+        // Example of customizing the window title and text
+        document.getElementById('customWindowTitle').innerText = `Desk ${button.getAttribute('data-desk-id')}:`;
+
+        // Get the text of the clicked button
+        const buttonText = button.innerText;
+
+        // Determine the status based on the button text
+        const status = buttonText === '-' ? 'occupied' : 'free';
+
+        // Display the status in the window
+        document.getElementById('customWindowText').innerText = `The current status of the desk is ${status}.`;
+
+        // Show the window close button
+        document.getElementById('closeWindow').style.display = 'block';
+
+        // Show reservation menu if the button text is '+'
+        if (buttonText === '+') {
+            document.getElementById('reservationMenu').style.display = 'block';
+            document.getElementById('closeWindow').style.display = 'none';
+        } else {
+            document.getElementById('reservationMenu').style.display = 'none';
+
+
+        }
+
+
+        // Store the current desk ID for reservation
+        currentDeskId = button.getAttribute('data-desk-id');
+    });
+});
+
+// Close window button
+document.getElementById('closeWindow').addEventListener('click', () => {
+    // Hide the window when the close button is clicked
+    document.getElementById('customWindow').style.display = 'none';
+    document.getElementById('reservationWindow').style.display = 'none';
+});
+
+/* Reservation button
+document.getElementById('reserveButton').addEventListener('click', () => {
+    // Get the selected values from the picklists
+    const timePeriod = document.getElementById('timePeriod').value;
+    const reservationDate = document.getElementById('reservationDate').value;
+
+    // You can perform further actions with the selected values, such as sending them to a server for processing
+
+    // Change the button text to "-" and its color to red if reservation date is today
+    const button = document.querySelector('.desk[data-desk-id="' + currentDeskId + '"]');
+    const today = new Date().toISOString().slice(0, 10);
+    if (reservationDate === today) {
+        button.innerText = '-';
+        button.style.backgroundColor = 'red';
+    }
+
+    // Hide the reservation menu
+    document.getElementById('reservationMenu').style.display = 'none';
+
+    /* Show the reservation success window
+    const reservationSuccessWindow = document.getElementById('reservationSuccessWindow');
+    reservationSuccessWindow.style.display = 'block';
+    reservationSuccessWindow.style.zIndex = 9999; // Ensure it appears on top
+    // Close reservation success window button
+    document.getElementById('closeReservationSuccessWindow').addEventListener('click', () => {
+        // Hide the reservation success window when the close button is clicked
+        document.getElementById('reservationSuccessWindow').style.display = 'none';
+        document.getElementById('customWindow').style.display = 'none';
+
+    });*/
+
+    // Hide the close button in the reservation success window
+    //document.getElementById('closeReservationSuccessWindow').style.display = 'block';
+    //document.getElementById('reservationMenu').style.display = 'none';
+//});
+
+/* /// Close reservation window button
+document.getElementById('closeReservationWindow').addEventListener('click', () => {
+    // Hide the reservation window when the close button is clicked
+    document.getElementById('reservationWindow').style.display = 'none';
+});
+
+// Close reservation success window button
+document.getElementById('closeReservationSuccessWindow').addEventListener('click', () => {
+    // Hide the reservation success window when the close button is clicked
+    document.getElementById('reservationSuccessWindow').style.display = 'none';
+}); */
+
+// Close the custom window
+document.getElementById('customWindow').style.display = 'none';
+
+// Send JSON response
+fetch('/book', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ message: 'Login successful' })
+})
+.then(response => {
+    // Handle response if needed
+})
+.catch(error => {
+    // Handle error if needed
+});
+
+
+
+
+
+
+</script>
+</body>
+</html>
