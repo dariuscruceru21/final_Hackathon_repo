@@ -369,16 +369,16 @@
     </div>
 </div>
 
-<!-- Reservation success window
+<!--Reservation success window-->
 <div id="reservationSuccessWindow" class="custom-window">
     <div class="window-title">Reservation Successful</div>
     <div class="window-text">Your reservation has been successfully made.</div>
     <button id="closeReservationSuccessWindow" class="close-button">Close</button>
-</div> -->
+</div>
 
 <!--<img src="Picture1.png">-->
 <div class="container" id="floor-plan">
-    <!-- Your existing HTML code here -->
+   
     <!-- Static buttons -->
     <div class="group" id="first">
         <div class="desk-group">
@@ -814,7 +814,7 @@ document.getElementById('closeWindow').addEventListener('click', () => {
     document.getElementById('reservationWindow').style.display = 'none';
 });
 
-/* Reservation button
+// Reservation button
 document.getElementById('reserveButton').addEventListener('click', () => {
     // Get the selected values from the picklists
     const timePeriod = document.getElementById('timePeriod').value;
@@ -833,7 +833,7 @@ document.getElementById('reserveButton').addEventListener('click', () => {
     // Hide the reservation menu
     document.getElementById('reservationMenu').style.display = 'none';
 
-    /* Show the reservation success window
+    // Show the reservation success window
     const reservationSuccessWindow = document.getElementById('reservationSuccessWindow');
     reservationSuccessWindow.style.display = 'block';
     reservationSuccessWindow.style.zIndex = 9999; // Ensure it appears on top
@@ -843,14 +843,14 @@ document.getElementById('reserveButton').addEventListener('click', () => {
         document.getElementById('reservationSuccessWindow').style.display = 'none';
         document.getElementById('customWindow').style.display = 'none';
 
-    });*/
+    });
 
     // Hide the close button in the reservation success window
-    //document.getElementById('closeReservationSuccessWindow').style.display = 'block';
-    //document.getElementById('reservationMenu').style.display = 'none';
-//});
+    document.getElementById('closeReservationSuccessWindow').style.display = 'block';
+    document.getElementById('reservationMenu').style.display = 'none';
+});
 
-/* /// Close reservation window button
+/// Close reservation window button
 document.getElementById('closeReservationWindow').addEventListener('click', () => {
     // Hide the reservation window when the close button is clicked
     document.getElementById('reservationWindow').style.display = 'none';
@@ -860,11 +860,7 @@ document.getElementById('closeReservationWindow').addEventListener('click', () =
 document.getElementById('closeReservationSuccessWindow').addEventListener('click', () => {
     // Hide the reservation success window when the close button is clicked
     document.getElementById('reservationSuccessWindow').style.display = 'none';
-}); */
-
-// Close the custom window
-document.getElementById('customWindow').style.display = 'none';
-
+});
 // Send JSON response
 fetch('/book', {
     method: 'POST',
@@ -887,4 +883,5 @@ fetch('/book', {
 
 </script>
 </body>
+
 </html>

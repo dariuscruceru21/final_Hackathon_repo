@@ -156,7 +156,7 @@ app.post('/book', async (req, res) => {
     await newBooking.save();
 
   
-    res.redirect("/map.ejs")
+    //res.redirect("/map.ejs")
     
     
   } catch (error) {
